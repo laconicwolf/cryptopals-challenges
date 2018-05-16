@@ -1,2 +1,2 @@
-# cryptopals-challenges
+# Cryptopals challenges
 A repository containing my solutions to the cryptopals challenges (https://cryptopals.com). 
