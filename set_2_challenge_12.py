@@ -18,32 +18,6 @@ def encrypt_aes_ecb(data, key):
     return ciphertext
 
 
-def encrypt_aes_cbc(data, key, iv):
-    """Returns AES encrypted ciphertext in CBC mode."""
-
-    # Sets the initial IV. During the encryption (in the for
-    # loop), prev will be reset to previous ciphertext block.
-    prev = iv
-    ciphertext = b''
-
-    # Divides the plaintext into block size-sized chunks
-    plaintext_blocks = [data[i:i+block_size] for i in range(0, len(data), block_size)]
-
-    # Iterate over each block
-    for plaintext_block in plaintext_blocks:
-
-        # XORs block with the previous ciphertext block, or
-        # with the IV if first block. 
-        xor_data = strxor(plaintext_block, prev)
-
-        # Encrypts the block and adds it to the ciphertext 
-        # byte string
-        ciphertext_block = encrypt_aes_ecb(xor_data, key)
-        ciphertext += ciphertext_block
-        prev = ciphertext_block 
-    return ciphertext
-
-
 def count_repetitions(ciphertext, block_size):
     """Breaks the ciphertext into block_size-sized chunks and 
     counts the number of repetitions. Returns the ciphertext
